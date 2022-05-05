@@ -1,3 +1,4 @@
+import 'package:emosewa/controller/cart_controller.dart';
 import 'package:emosewa/controller/popular_product_controller.dart';
 import 'package:emosewa/pages/food/popular_food_details.dart';
 import 'package:emosewa/pages/food/recommended_food_detail.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<PopularProductController>().getPopularProductList();
+    Get.find<CartController>();
     Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
