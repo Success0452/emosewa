@@ -12,6 +12,8 @@ class CartController extends GetxController{
 
   Map<int, CartModel> _items = {};
 
+  List<CartModel> storageItems = [];
+
   Map<int, CartModel> get items => _items;
 
   void addItem(ProductModel product, int quantity){
@@ -27,12 +29,12 @@ class CartController extends GetxController{
           isExit: true,
           quantity : value.quantity!+quantity,
           time : DateTime.now().toString(),
+          product: product,
         );
-
-        if(totalQuantity <= 0){
-          _items.remove(product.id);
-        }
       });
+      if(totalQuantity <= 0){
+        _items.remove(product.id);
+      }
     }else{
       if(quantity > 0){
         _items.putIfAbsent(product.id!, () => CartModel(
@@ -43,6 +45,7 @@ class CartController extends GetxController{
           quantity : quantity,
           isExit : true,
           time : DateTime.now().toString(),
+          product: product,
         ));
       }else{
         Get.snackbar(
@@ -53,6 +56,8 @@ class CartController extends GetxController{
         );
       }
     }
+    cartRepo.addCartToList(allItems);
+    update();
   }
 
   bool isExist(ProductModel product){
@@ -88,4 +93,26 @@ class CartController extends GetxController{
       return e.value;
     }).toList();
   }
+
+  int get totalPrice{
+    var total = 0;
+    _items.forEach((key, value) {
+       total += value.quantity! * value.price!;
+    });
+    return total;
+  }
+
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items){
+    storageItems = items;
+
+    for(int i = 0; i < storageItems.length; i++){
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
+  }
+
 }

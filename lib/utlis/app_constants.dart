@@ -9,5 +9,6 @@ class AppConstants{
   static const String Upload = "/uploads/";
 
   static const String token = "FamousToken";
+  static const String CartList = "cart-list";
 
 }
