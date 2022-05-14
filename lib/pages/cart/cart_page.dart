@@ -205,13 +205,18 @@ class CartPage extends StatelessWidget {
                   onTap: () {
                     // popularProduct.addItem(product);
                   },
-                  child: Container(
-                    padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.height20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.radius20),
-                        color: AppColors.mainColor
+                  child: GestureDetector(
+                    onTap: (){
+                      cartController.historyList();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.height20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dimensions.radius20),
+                          color: AppColors.mainColor
+                      ),
+                      child: BigText(text: "Check Out", color: Colors.white,),
                     ),
-                    child: BigText(text: "Check Out", color: Colors.white,),
                   ),
                 )
               ],

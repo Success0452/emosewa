@@ -1,3 +1,4 @@
+import 'package:emosewa/pages/cart/cart_history.dart';
 import 'package:emosewa/pages/home/main_page.dart';
 import 'package:emosewa/utlis/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     const MainPage(),
     Container(child: Center(child: Text("Next Page")),),
-    Container(child: Center(child: Text("Next next Page")),),
+    const CartHistory(),
     Container(child: Center(child: Text("Next next next Page")),),
   ];
 

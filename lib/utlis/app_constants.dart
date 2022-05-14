@@ -10,5 +10,6 @@ class AppConstants{
 
   static const String token = "FamousToken";
   static const String CartList = "cart-list";
+  static const String CartHistoryList = "cart-history-list";
 
 }

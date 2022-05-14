@@ -94,6 +94,15 @@ class CartController extends GetxController{
     }).toList();
   }
 
+  void historyList(){
+    cartRepo.addCartHistoryList();
+    clear();
+  }
+  void clear(){
+    _items = {};
+    update();
+  }
+
   int get totalPrice{
     var total = 0;
     _items.forEach((key, value) {
@@ -113,6 +122,10 @@ class CartController extends GetxController{
     for(int i = 0; i < storageItems.length; i++){
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
+  }
+
+  List<CartModel> getCartHistoryList(){
+    return cartRepo.getCartHistoryList();
   }
 
 }
